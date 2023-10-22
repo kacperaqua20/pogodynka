@@ -57,17 +57,21 @@ class __TwigTemplate_983d984dfe8635fb6392b6f4bcf42996 extends Template
         // line 7
         $this->displayBlock('stylesheets', $context, $blocks);
         // line 9
-        echo "
+        echo "        <style>
+            body {
+        background: url(\"https://placehold.co/100x100/FFFFFF/EFEFEF/png?text=49421\");
+            }
+        </style>
         ";
-        // line 10
+        // line 14
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 12
+        // line 16
         echo "    </head>
     <body>
         ";
-        // line 14
+        // line 18
         $this->displayBlock('body', $context, $blocks);
-        // line 15
+        // line 19
         echo "    </body>
 </html>
 ";
@@ -118,7 +122,7 @@ class __TwigTemplate_983d984dfe8635fb6392b6f4bcf42996 extends Template
 
     }
 
-    // line 10
+    // line 14
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -128,7 +132,7 @@ class __TwigTemplate_983d984dfe8635fb6392b6f4bcf42996 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 11
+        // line 15
         echo "        ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -138,7 +142,7 @@ class __TwigTemplate_983d984dfe8635fb6392b6f4bcf42996 extends Template
 
     }
 
-    // line 14
+    // line 18
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -163,7 +167,7 @@ class __TwigTemplate_983d984dfe8635fb6392b6f4bcf42996 extends Template
 
     public function getDebugInfo()
     {
-        return array (  142 => 14,  132 => 11,  122 => 10,  112 => 8,  102 => 7,  83 => 5,  71 => 15,  69 => 14,  65 => 12,  63 => 10,  60 => 9,  58 => 7,  53 => 5,  47 => 1,);
+        return array (  146 => 18,  136 => 15,  126 => 14,  116 => 8,  106 => 7,  87 => 5,  75 => 19,  73 => 18,  69 => 16,  67 => 14,  60 => 9,  58 => 7,  53 => 5,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -176,7 +180,11 @@ class __TwigTemplate_983d984dfe8635fb6392b6f4bcf42996 extends Template
         <link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>\">
         {% block stylesheets %}
         {% endblock %}
-
+        <style>
+            body {
+        background: url(\"https://placehold.co/100x100/FFFFFF/EFEFEF/png?text=49421\");
+            }
+        </style>
         {% block javascripts %}
         {% endblock %}
     </head>
