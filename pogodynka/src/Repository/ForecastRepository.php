@@ -24,6 +24,7 @@ public function findByLocation(Location $location)
 
     $query = $qb->getQuery();
     $result = $query->getResult();
+    return $result;
 }
 
 }

@@ -14,6 +14,10 @@ return [
         '/_profiler/phpinfo' => [[['_route' => '_profiler_phpinfo', '_controller' => 'web_profiler.controller.profiler::phpinfoAction'], null, null, null, false, false, null]],
         '/_profiler/xdebug' => [[['_route' => '_profiler_xdebug', '_controller' => 'web_profiler.controller.profiler::xdebugAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
+        '/forecast' => [[['_route' => 'app_forecast_index', '_controller' => 'App\\Controller\\ForecastController::index'], null, ['GET' => 0], null, true, false, null]],
+        '/forecast/new' => [[['_route' => 'app_forecast_new', '_controller' => 'App\\Controller\\ForecastController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        '/location6' => [[['_route' => 'app_location6_index', '_controller' => 'App\\Controller\\Location6Controller::index'], null, ['GET' => 0], null, true, false, null]],
+        '/location6/new' => [[['_route' => 'app_location6_new', '_controller' => 'App\\Controller\\Location6Controller::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'
@@ -32,7 +36,17 @@ return [
                         .'|(*:159)'
                     .')'
                 .')'
-                .'|/weather/([^/]++)/([^/]++)(*:195)'
+                .'|/forecast/([^/]++)(?'
+                    .'|(*:190)'
+                    .'|/edit(*:203)'
+                    .'|(*:211)'
+                .')'
+                .'|/location6/([^/]++)(?'
+                    .'|(*:242)'
+                    .'|/edit(*:255)'
+                    .'|(*:263)'
+                .')'
+                .'|/weather/([^/]++)/([^/]++)(*:298)'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -43,7 +57,13 @@ return [
         136 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
         149 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
-        195 => [
+        190 => [[['_route' => 'app_forecast_show', '_controller' => 'App\\Controller\\ForecastController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        203 => [[['_route' => 'app_forecast_edit', '_controller' => 'App\\Controller\\ForecastController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        211 => [[['_route' => 'app_forecast_delete', '_controller' => 'App\\Controller\\ForecastController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        242 => [[['_route' => 'app_location6_show', '_controller' => 'App\\Controller\\Location6Controller::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        255 => [[['_route' => 'app_location6_edit', '_controller' => 'App\\Controller\\Location6Controller::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        263 => [[['_route' => 'app_location6_delete', '_controller' => 'App\\Controller\\Location6Controller::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        298 => [
             [['_route' => 'pogodynka', '_controller' => 'App\\Controller\\WeatherController::city'], ['country', 'city'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
