@@ -16,8 +16,10 @@ return [
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
         '/forecast' => [[['_route' => 'app_forecast_index', '_controller' => 'App\\Controller\\ForecastController::index'], null, ['GET' => 0], null, true, false, null]],
         '/forecast/new' => [[['_route' => 'app_forecast_new', '_controller' => 'App\\Controller\\ForecastController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        '/location6' => [[['_route' => 'app_location6_index', '_controller' => 'App\\Controller\\Location6Controller::index'], null, ['GET' => 0], null, true, false, null]],
-        '/location6/new' => [[['_route' => 'app_location6_new', '_controller' => 'App\\Controller\\Location6Controller::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        '/location' => [[['_route' => 'app_location_index', '_controller' => 'App\\Controller\\LocationController::index'], null, ['GET' => 0], null, true, false, null]],
+        '/location/new' => [[['_route' => 'app_location_new', '_controller' => 'App\\Controller\\LocationController::new'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        '/login' => [[['_route' => 'app_login', '_controller' => 'App\\Controller\\LoginController::index'], null, null, null, false, false, null]],
+        '/logout' => [[['_route' => 'app_logout'], null, ['GET' => 0], null, false, false, null]],
     ],
     [ // $regexpList
         0 => '{^(?'
@@ -41,12 +43,12 @@ return [
                     .'|/edit(*:203)'
                     .'|(*:211)'
                 .')'
-                .'|/location6/([^/]++)(?'
-                    .'|(*:242)'
-                    .'|/edit(*:255)'
-                    .'|(*:263)'
+                .'|/location/([^/]++)(?'
+                    .'|(*:241)'
+                    .'|/edit(*:254)'
+                    .'|(*:262)'
                 .')'
-                .'|/weather/([^/]++)/([^/]++)(*:298)'
+                .'|/weather/([^/]++)/([^/]++)(*:297)'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -60,11 +62,11 @@ return [
         190 => [[['_route' => 'app_forecast_show', '_controller' => 'App\\Controller\\ForecastController::show'], ['id'], ['GET' => 0], null, false, true, null]],
         203 => [[['_route' => 'app_forecast_edit', '_controller' => 'App\\Controller\\ForecastController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
         211 => [[['_route' => 'app_forecast_delete', '_controller' => 'App\\Controller\\ForecastController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        242 => [[['_route' => 'app_location6_show', '_controller' => 'App\\Controller\\Location6Controller::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        255 => [[['_route' => 'app_location6_edit', '_controller' => 'App\\Controller\\Location6Controller::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        263 => [[['_route' => 'app_location6_delete', '_controller' => 'App\\Controller\\Location6Controller::delete'], ['id'], ['POST' => 0], null, false, true, null]],
-        298 => [
-            [['_route' => 'pogodynka', '_controller' => 'App\\Controller\\WeatherController::city'], ['country', 'city'], null, null, false, true, null],
+        241 => [[['_route' => 'app_location_show', '_controller' => 'App\\Controller\\LocationController::show'], ['id'], ['GET' => 0], null, false, true, null]],
+        254 => [[['_route' => 'app_location_edit', '_controller' => 'App\\Controller\\LocationController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        262 => [[['_route' => 'app_location_delete', '_controller' => 'App\\Controller\\LocationController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
+        297 => [
+            [['_route' => 'app_weather', '_controller' => 'App\\Controller\\WeatherController::city'], ['country', 'city'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

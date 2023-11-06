@@ -10,19 +10,22 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[Route('/location6')]
-class Location6Controller extends AbstractController
+#[Route('/location')]
+class LocationController extends AbstractController
 {
-    #[Route('/', name: 'app_location6_index', methods: ['GET'])]
+    #[Route('/', name: 'app_location_index', methods: ['GET'])]
+    #[IsGranted('ROLE_LOCATION_INDEX')]
     public function index(LocationRepository $locationRepository): Response
     {
-        return $this->render('location6/index.html.twig', [
+        return $this->render('location/index.html.twig', [
             'locations' => $locationRepository->findAll(),
         ]);
     }
 
-    #[Route('/new', name: 'app_location6_new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'app_location_new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_LOCATION_NEW')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $location = new Location();
@@ -35,24 +38,26 @@ class Location6Controller extends AbstractController
             $entityManager->persist($location);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_location6_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_location_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('location6/new.html.twig', [
+        return $this->render('location/new.html.twig', [
             'location' => $location,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_location6_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'app_location_show', methods: ['GET'])]
+    #[IsGranted('ROLE_LOCATION_SHOW')]
     public function show(Location $location): Response
     {
-        return $this->render('location6/show.html.twig', [
+        return $this->render('location/show.html.twig', [
             'location' => $location,
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_location6_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id}/edit', name: 'app_location_edit', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_LOCATION_EDIT')]
     public function edit(Request $request, Location $location, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(LocationType::class, $location, [
@@ -63,16 +68,17 @@ class Location6Controller extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_location6_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_location_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('location6/edit.html.twig', [
+        return $this->render('location/edit.html.twig', [
             'location' => $location,
             'form' => $form,
         ]);
     }
 
-    #[Route('/{id}', name: 'app_location6_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'app_location_delete', methods: ['POST'])]
+    #[IsGranted('ROLE_LOCATION_DELETE')]
     public function delete(Request $request, Location $location, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$location->getId(), $request->request->get('_token'))) {
@@ -80,6 +86,6 @@ class Location6Controller extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_location6_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_location_index', [], Response::HTTP_SEE_OTHER);
     }
 }

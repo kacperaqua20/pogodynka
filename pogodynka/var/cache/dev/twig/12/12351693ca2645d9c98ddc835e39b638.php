@@ -81,7 +81,7 @@ class __TwigTemplate_983d984dfe8635fb6392b6f4bcf42996 extends Template
                     <li class=\"nav-item\">
                         <a class=\"nav-link\" href=\"";
         // line 33
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_location6_index");
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_location_index");
         echo "\">Cities</a>
                     </li>
                     <li class=\"nav-item\">
@@ -92,13 +92,30 @@ class __TwigTemplate_983d984dfe8635fb6392b6f4bcf42996 extends Template
                     </li>
                 </ul>
             </div>
-        </div>
+
+            ";
+        // line 41
+        if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_USER")) {
+            // line 42
+            echo "                <a href=\"";
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
+            echo "\">Logout</a>
+            ";
+        } else {
+            // line 44
+            echo "                <a href=\"";
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_login");
+            echo "\">Login</a>
+            ";
+        }
+        // line 46
+        echo "        </div>
     </nav>
     <div class=\"container\">
         ";
-        // line 43
+        // line 49
         $this->displayBlock('body', $context, $blocks);
-        // line 44
+        // line 50
         echo "    </div>
     </body>
 </html>
@@ -174,7 +191,7 @@ class __TwigTemplate_983d984dfe8635fb6392b6f4bcf42996 extends Template
 
     }
 
-    // line 43
+    // line 49
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -204,7 +221,7 @@ class __TwigTemplate_983d984dfe8635fb6392b6f4bcf42996 extends Template
 
     public function getDebugInfo()
     {
-        return array (  178 => 43,  166 => 18,  156 => 17,  144 => 9,  134 => 8,  115 => 6,  102 => 44,  100 => 43,  90 => 36,  84 => 33,  70 => 21,  68 => 17,  61 => 12,  59 => 8,  54 => 6,  47 => 1,);
+        return array (  195 => 49,  183 => 18,  173 => 17,  161 => 9,  151 => 8,  132 => 6,  119 => 50,  117 => 49,  112 => 46,  106 => 44,  100 => 42,  98 => 41,  90 => 36,  84 => 33,  70 => 21,  68 => 17,  61 => 12,  59 => 8,  54 => 6,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -241,13 +258,19 @@ class __TwigTemplate_983d984dfe8635fb6392b6f4bcf42996 extends Template
             <div class=\"collapse navbar-collapse\" id=\"navbarNav\">
                 <ul class=\"navbar-nav\">
                     <li class=\"nav-item\">
-                        <a class=\"nav-link\" href=\"{{ path('app_location6_index') }}\">Cities</a>
+                        <a class=\"nav-link\" href=\"{{ path('app_location_index') }}\">Cities</a>
                     </li>
                     <li class=\"nav-item\">
                         <a class=\"nav-link\" href=\"{{ path('app_forecast_index') }}\">Forecast</a>
                     </li>
                 </ul>
             </div>
+
+            {% if is_granted('ROLE_USER') %}
+                <a href=\"{{ path('app_logout') }}\">Logout</a>
+            {% else %}
+                <a href=\"{{ path('app_login') }}\">Login</a>
+            {% endif %}
         </div>
     </nav>
     <div class=\"container\">
