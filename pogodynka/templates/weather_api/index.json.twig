@@ -1,0 +1,13 @@
+{
+    "city": "Szczecin",
+    "country": "PL",
+    "forecasts": [
+        {% for forecast in forecasts %}
+        {
+            "date": "{{ forecast.date | date('Y-m-d') }}",
+            "celsius": "{{ forecast.celsius }}",
+            "fahrenheit": "{{ forecast.fahrehneit }}"
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+    ]
+}
